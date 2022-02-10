@@ -8,7 +8,7 @@
 import Foundation
 
 protocol FavoritesNetworkManagerable: AnyObject {
-    func fetchCharacter(withID id: Int, completed: @escaping (Result<mhCharacter, mhError>) -> Void)
+    func fetchCharacter(withID id: Int, completed: @escaping (Result<mhCharacter, MHError>) -> Void)
     // func getModel(character: mhCharacter, completed: @escaping (CharactersViewModel) -> Void)
 }
 
@@ -23,7 +23,7 @@ class FavoritesNetworkManager: FavoritesNetworkManagerable {
 
     func fetchCharacter(
         withID id: Int,
-        completed: @escaping (Result<mhCharacter, mhError>) -> Void
+        completed: @escaping (Result<mhCharacter, MHError>) -> Void
     ) {
         guard let url = urlGenerator.getCharacterURLbyID(id: id) else {
             completed(.failure(.invalidURL))

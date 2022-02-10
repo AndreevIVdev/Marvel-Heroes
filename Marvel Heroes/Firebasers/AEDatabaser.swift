@@ -11,19 +11,19 @@ protocol Databaserable: AnyObject {
     func isInFavorites(
         id: Int,
         email: String,
-        completed: @escaping (Result<Bool, mhError>) -> Void
+        completed: @escaping (Result<Bool, MHError>) -> Void
     )
     
     func updateWith(
         favorite: Int,
         forEmail email: String,
         actionType: DatabaserActionType,
-        completed: @escaping (mhError?) -> Void
+        completed: @escaping (MHError?) -> Void
     )
     
     func retrieveFavorites(
         forEmail email: String,
-        completed: @escaping (Result<[Int], mhError>) -> Void
+        completed: @escaping (Result<[Int], MHError>) -> Void
     )
 }
 
@@ -37,7 +37,7 @@ final class mhDatabaser: Databaserable {
     func isInFavorites(
         id: Int,
         email: String,
-        completed: @escaping (Result<Bool, mhError>) -> Void
+        completed: @escaping (Result<Bool, MHError>) -> Void
     ) {
         retrieveFavorites(forEmail: email) { result in
             switch result {
@@ -54,7 +54,7 @@ final class mhDatabaser: Databaserable {
         favorite: Int,
         forEmail email: String,
         actionType: DatabaserActionType,
-        completed: @escaping (mhError?) -> Void
+        completed: @escaping (MHError?) -> Void
     ) {
         
         retrieveFavorites(forEmail: email) { [weak self] result in
@@ -90,7 +90,7 @@ final class mhDatabaser: Databaserable {
     
     func retrieveFavorites(
         forEmail email: String,
-        completed: @escaping (Result<[Int], mhError>) -> Void
+        completed: @escaping (Result<[Int], MHError>) -> Void
     ) {
         database.child(MD5(string: email)).getData { error, snapshot  in
             guard error == nil else {
@@ -108,7 +108,7 @@ final class mhDatabaser: Databaserable {
     private func save(
         forEmail email: String,
         favorites: [Int],
-        complititon: @escaping (mhError?) -> Void
+        complititon: @escaping (MHError?) -> Void
     ) {
         database.child(MD5(string: email)).setValue(favorites) { error, _ in
             complititon(error != nil ? .dataBaseError : nil)

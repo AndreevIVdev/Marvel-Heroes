@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum mhError: String, Error {
+public enum MHError: String, Error {
 
     case invalidURL = "This string creates invalid URL, try another one."
     case unableToComplete = "Unable to complete your request. Please check your internet connection."

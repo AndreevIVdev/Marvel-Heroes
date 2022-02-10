@@ -9,7 +9,7 @@ import Foundation
 import SafariServices
 
 protocol DetailedInformationPresentable: AnyObject {
-    func handleError(error: mhError)
+    func handleError(error: MHError)
     func updateIsInFavorites()
     func getModel() -> DetailedInformationViewModel
     func favouriteButtonTapped()
@@ -57,7 +57,7 @@ class DetailedInformationPreseneter: DetailedInformationPresentable, DetailedInf
         self.avatarTapped = avatarTapped
     }
     
-    func handleError(error: mhError) {
+    func handleError(error: MHError) {
         view.showAllert(title: "Error", message: error.localizedDescription, buttonTitle: "OK")
     }
     

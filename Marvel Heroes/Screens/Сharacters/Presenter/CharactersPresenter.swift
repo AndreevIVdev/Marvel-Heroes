@@ -10,7 +10,7 @@ import Foundation
 protocol ChractersPresentable: AnyObject {
     func fetchCharacters(completed: @escaping () -> Void)
     func getModel(forIndex: Int, completed: @escaping (CharactersViewModel) -> Void)
-    func handleError(error: mhError)
+    func handleError(error: MHError)
     func getCharactersCount() -> Int
     func logOutButtonTapped()
     func didSelectRowAt(indexPath: IndexPath)
@@ -72,7 +72,7 @@ final class ChractersPresenter: ChractersPresentable, ChractersCoordinatable {
         characterNetworkManager.getModel(character: characters[index], completed: completed)
     }
     
-    func handleError(error: mhError) {
+    func handleError(error: MHError) {
         view.showAllert(title: "Error", message: error.localizedDescription, buttonTitle: "OK")
     }
 

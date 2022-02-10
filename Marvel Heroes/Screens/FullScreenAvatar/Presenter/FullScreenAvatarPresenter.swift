@@ -9,7 +9,7 @@ import Foundation
 
 protocol FullScreenAvatarPresentable: AnyObject {
     func getModel()
-    func handleError(error: mhError)
+    func handleError(error: MHError)
 }
 
 final class FullScreenAvatarPresenter: FullScreenAvatarPresentable {
@@ -48,7 +48,7 @@ final class FullScreenAvatarPresenter: FullScreenAvatarPresentable {
         }
     }
     
-    func handleError(error: mhError) {
+    func handleError(error: MHError) {
         view.showAllert(
             title: "Error",
             message: error.rawValue,

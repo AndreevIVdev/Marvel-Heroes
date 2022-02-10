@@ -8,7 +8,7 @@
 import Foundation
 
 protocol CharacterNetworkManagerable: AnyObject {
-    func fetchCharacters(withOffset offset: Int, completed: @escaping (Result<[mhCharacter], mhError>) -> Void)
+    func fetchCharacters(withOffset offset: Int, completed: @escaping (Result<[mhCharacter], MHError>) -> Void)
     func getModel(character: mhCharacter, completed: @escaping (CharactersViewModel) -> Void)
 }
 
@@ -20,7 +20,7 @@ final class CharacterNetworkManager: CharacterNetworkManagerable {
         self.urlGenerator = urlGenerator
     }
 
-    func fetchCharacters(withOffset offset: Int, completed: @escaping (Result<[mhCharacter], mhError>) -> Void) {
+    func fetchCharacters(withOffset offset: Int, completed: @escaping (Result<[mhCharacter], MHError>) -> Void) {
         
         guard let url = urlGenerator.getAllCharactersURL(
             withOffset: offset

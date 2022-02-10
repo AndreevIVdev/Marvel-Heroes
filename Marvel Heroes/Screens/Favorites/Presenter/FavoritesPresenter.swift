@@ -10,7 +10,7 @@ import Foundation
 protocol FavoritesPresentable: AnyObject {
     func fetchFavorites()
     func getModel(forRow row: Int, completed: @escaping (FavoritesViewModel) -> Void)
-    func handleError(error: mhError)
+    func handleError(error: MHError)
     func getFavoritesCount() -> Int
     func didSelectRowAt(indexPath: IndexPath)
     // swiftlint:disable:next identifier_name
@@ -97,7 +97,7 @@ class FavoritesPresenter: FavoritesPresentable {
         favoritesNetworkManager.getModel(character: favorites[row], completed: completed)
     }
     
-    func handleError(error: mhError) {
+    func handleError(error: MHError) {
         view.showAllert(
             title: "Error",
             message: error.rawValue,

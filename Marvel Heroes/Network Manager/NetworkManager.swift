@@ -10,7 +10,7 @@ import Foundation
 public protocol NetworkManagerable: AnyObject {
     func fetchData(
         from url: URL,
-        completed: @escaping (Result<Data, mhError>) -> Void
+        completed: @escaping (Result<Data, MHError>) -> Void
     )
 }
 
@@ -22,7 +22,7 @@ public final class NetworkManager: NetworkManagerable {
     
     public func fetchData(
         from url: URL,
-        completed: @escaping (Result<Data, mhError>) -> Void
+        completed: @escaping (Result<Data, MHError>) -> Void
     ) {
         if let data = cache[url] {
             completed(.success(data))
